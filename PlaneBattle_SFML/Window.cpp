@@ -17,6 +17,10 @@ void Window::Destroy() {
 	m_window.close();
 }
 	
+sf::RenderWindow& Window::GetRenderWindow() {
+	return m_window;
+}
+
 void Window::Setup(const std::string& l_title, const sf::Vector2u& l_windowSize) {
 	m_windowTitle = l_title;
 	m_windowSize = l_windowSize;
@@ -40,11 +44,15 @@ sf::Vector2u Window::GetWindowSize() {
 bool Window::isClosed() {
 	return m_isClosed;
 }
+void Window::HandlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
+
+}
 void Window::Update() {
 	sf::Event evnt;
 	while (m_window.pollEvent(evnt)) {
 		if (evnt.type == sf::Event::Closed) {
 			m_isClosed = true;
-		}
+			break;
+		} 
 	}
 }

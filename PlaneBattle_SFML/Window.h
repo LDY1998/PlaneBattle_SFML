@@ -13,6 +13,8 @@ public:
 	void Update();
 	sf::Vector2u GetWindowSize();
 	bool isClosed();
+	sf::RenderWindow& GetRenderWindow();
+	void HandlePlayerInput(sf::Keyboard::Key key, bool isPressed);
 
 private:
 	void Setup(const std::string& l_title, const sf::Vector2u& l_size);
