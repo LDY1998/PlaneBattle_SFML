@@ -130,10 +130,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="PlayerPlane.cpp" />
+    <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Plane.h" />
+    <ClInclude Include="PlayerPlane.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
