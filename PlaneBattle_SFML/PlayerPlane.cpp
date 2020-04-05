@@ -11,6 +11,8 @@ PlayerPlane::PlayerPlane(sf::RenderWindow* l_window):
 	m_Sprite.setTexture(m_Texture);
 	sf::Vector2f originPosition(renderWindow->getSize().x / 2, renderWindow->getSize().y - m_Texture.getSize().y);
 	m_Sprite.setPosition(originPosition);
+	m_Speed.x = 200;
+	m_Speed.y = 200;
 }
 
 PlayerPlane::~PlayerPlane()
@@ -87,6 +89,7 @@ void PlayerPlane::Move(sf::Time l_elapsed)
 
 void PlayerPlane::Update(sf::Time l_elapsed)
 {
+	ProcessEvent();
 	Move(l_elapsed);
 	if (isCollide()) {
 		Damage(m_life);
