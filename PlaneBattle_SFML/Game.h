@@ -4,6 +4,8 @@
 #include <iostream>
 #include "StateManager.h"
 #include "PlayerPlane.h"
+#include "EnemyPlane.h"
+#include "Sky.h"
 
 
 class Game {
@@ -12,7 +14,7 @@ class Game {
 public:
 	Game();
 	~Game();
-	void InitializeGame();
+	void InitializeGame(Sky* l_sky);
 	void run();
 	void Render();
 	void Update();
@@ -23,5 +25,5 @@ private:
 	sf::RenderWindow m_Window;
 	sf::Time m_elapsed;
 	sf::Clock m_clock;
-	PlayerPlane player;
+	Sky* sky;
 };

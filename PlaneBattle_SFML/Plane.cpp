@@ -1,11 +1,7 @@
 #include "Plane.h"
 
-Plane::Plane()
-{
-}
-
-Plane::Plane(sf::RenderWindow* l_window):
-	renderWindow(l_window)
+Plane::Plane(Sky * l_sky):
+	sky(l_sky)
 {
 }
 
@@ -13,38 +9,13 @@ Plane::~Plane()
 {
 }
 
-sf::Vector2f Plane::GetPosition()
+void Plane::setFireSpeed(int speed)
 {
-	return m_Sprite.getPosition();
+	fireSpeed = speed;
 }
 
-int Plane::GetLife()
+int Plane::getFireSpeed()
 {
-	return m_life;
+	return fireSpeed;
 }
 
-void Plane::Damage(int l_damage)
-{
-	m_life -= l_damage;
-}
-
-void Plane::Render()
-{
-	renderWindow->draw(m_Sprite);
-}
-
-void Plane::Update()
-{
-	sf::Event evnt;
-	while (renderWindow->pollEvent(evnt)) {
-		if (evnt.type == sf::Event::Closed) {
-			renderWindow->close();
-			break;
-		}
-	}
-}
-
-bool Plane::isCollide()
-{
-	return false;
-}

@@ -1,30 +1,21 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-class Plane
+#include "FlyingObject.h"
+
+class Plane :
+	public FlyingObject
 {
-
 public:
-	Plane();
-	Plane(sf::RenderWindow* l_window);
-	~Plane();
-	virtual void Shoot() = 0;
-	virtual void Move(sf::Time l_elapsed) = 0;
-	sf::Vector2f GetPosition();
-	int GetLife();
-	void Damage(int l_damage);
-	virtual void ProcessEvent() = 0;
-	void Render();
-	void Update();
-	bool isCollide();
+	Plane(Sky* l_sky);
+	virtual ~Plane();
 
+	void setFireSpeed(int speed);
+	int getFireSpeed();
+	virtual void fire() = 0;
 
 protected:
-	sf::RenderWindow* renderWindow;
-	sf::Texture m_Texture;
-	sf::Sprite m_Sprite;
-	sf::Vector2f m_Speed;
-	bool mIsMovingUp = false, mIsMovingDown = false, mIsMovingLeft = false, mIsMovingRight = false;
-	int m_life;
-	sf::Clock* m_clock;
+	Sky* sky;
+	int fireSpeed;
+	sf::Texture texture;
 };
 

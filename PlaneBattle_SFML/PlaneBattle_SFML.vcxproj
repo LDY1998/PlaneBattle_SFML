@@ -129,16 +129,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FlyingObject.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GTexture.cpp" />
     <ClCompile Include="Plane.cpp" />
-    <ClCompile Include="PlayerPlane.cpp" />
+    <ClCompile Include="Sky.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FlyingObject.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GTexture.h" />
     <ClInclude Include="Plane.h" />
-    <ClInclude Include="PlayerPlane.h" />
+    <ClInclude Include="Sky.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

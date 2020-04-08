@@ -2,17 +2,20 @@
 
 
 
-Game::Game() :
-	m_Window(sf::VideoMode(900, 600), "Plane Battle", sf::Style::Default),
-	player(PlayerPlane(&m_Window))
+Game::Game():
+	m_Window(sf::VideoMode(900, 600), "Plane Battle", sf::Style::Default)
 {
+
+
 }
 
-Game::~Game() {}
+Game::~Game() {
+	
+}
 
-void Game::InitializeGame()
+void Game::InitializeGame(Sky* l_sky)
 {
-
+	this->sky = l_sky;
 }
 
 sf::Time Game::GetElapsed() {
@@ -23,20 +26,18 @@ void Game::RestartClock() {
 	m_elapsed += m_clock.restart();
 }
 void Game::Update() {
-	player.Update(GetElapsed());
+	sky->update(GetElapsed());
 }
 
 
 void Game::Render() {
-	//m_Window.Draw(m_Sprite);
 	m_Window.clear();
-	player.Render();
+	sky->render();
 	m_Window.display();
 }
 
 void Game::run() {
 	float frameTime = 1.0f / 60.0f;
-	InitializeGame();
 	while (m_Window.isOpen())
 	{
 		if (m_elapsed.asSeconds() > frameTime) {
@@ -50,6 +51,9 @@ void Game::run() {
 
 int main() {
 	Game game;
+	sf::RenderWindow window(sf::VideoMode(900, 600), "Plane Battle", sf::Style::Default);
+	Sky sky(&window);
+	game.InitializeGame(&sky);
 	game.run();
 	return 0;
 }
