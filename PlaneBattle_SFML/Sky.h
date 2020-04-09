@@ -4,6 +4,7 @@
 #include "GTexture.h"
 #include "EnemyPlane.h"
 #include <unordered_set>
+
 class Sky :
 	public sf::Sprite
 {
@@ -13,19 +14,21 @@ public:
 	//void initialize();
 
 	void addPlayer(PlayerPlane* player);
-	void update(sf::Time elapsed);
+	void update();
 	void addEnemy(EnemyPlane* enemy);
 	void setEnemyCreationRate(int rate);
 	void render();
+	sf::RenderWindow* window;
+
 
 private:
 	void checkCollision();
-
-	sf::RenderWindow* window;
+	void createEnemies();
 	sf::Texture texture = GTexture::SKY;
 	int createEnemyRate = 10;
-
+	PlayerPlane* player;
 	//std::unordered_set<Bullet*> bullets;
+	std::unordered_set<EnemyPlane*> enemies;
 
 };
 

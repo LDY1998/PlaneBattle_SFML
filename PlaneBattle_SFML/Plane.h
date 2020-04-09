@@ -14,8 +14,11 @@ public:
 	virtual void fire() = 0;
 
 protected:
-	Sky* sky;
 	int fireSpeed;
+	int life;
+	int fireDensity;
+
 	sf::Texture texture;
+	sf::Texture boomTexture;
 };
 

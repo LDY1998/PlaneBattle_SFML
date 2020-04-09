@@ -1,47 +1,46 @@
 #include "EnemyPlane.h"
+#include "Sky.h"
 
-EnemyPlane::EnemyPlane()
+EnemyPlane::EnemyPlane(Sky * l_sky):
+	Plane(l_sky)
 {
-}
-
-EnemyPlane::EnemyPlane(sf::RenderWindow * l_window):
-	Plane(l_window),
-	m_Velocity(sf::Vector2f(200, 200))
-{
+	this->setTexture(texture);
+	direction.x = 0;
+	direction.y = 1;
 }
 
 EnemyPlane::~EnemyPlane()
 {
 }
 
-void EnemyPlane::Shoot()
+void EnemyPlane::fire()
 {
 }
 
-void EnemyPlane::Move(sf::Time l_elapsed)
+void EnemyPlane::moveRandomly()
 {
-	if (m_Sprite.getPosition().y > renderWindow->getSize().y / 4) {
-		m_Velocity.y = 0;
-		m_Velocity.x = 0;
+	std::random_device rd;
+	std::mt19937 mt(rd());
+	std::uniform_real_distribution<double> dist(1, 5);
+
+	switch ((int)dist(mt))
+	{
+	case 0:
+		direction.x = 1.0;
+		direction.y = 0;
+	case 1:
+		direction.x = -1.0;
+		direction.y = 0;
+	case 2:
+		direction.x = 0;
+		direction.y = 1;
+	case 3:
+		direction.x = 0;
+		direction.y = 1;
+	case 4:
+		direction.x = 0;
+		direction.y = 1;
+	default:
+		break;
 	}
-	m_Sprite.move(m_Velocity*l_elapsed.asSeconds());
-}
-
-void EnemyPlane::Update(sf::Time l_elapsed)
-{
-	Move(l_elapsed);
-}
-
-
-void EnemyPlane::Render()
-{
-	renderWindow->draw(m_Sprite);
-}
-
-void EnemyPlane::InitializeTexture()
-{
-	m_Texture.loadFromFile("assets/EnemyPlane.png");
-	m_Sprite.setTexture(m_Texture);
-	sf::Vector2f originPosition(renderWindow->getSize().x / 2, m_Texture.getSize().y);
-	m_Sprite.setPosition(originPosition);
 }

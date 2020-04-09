@@ -1,101 +1,51 @@
 #include "PlayerPlane.h"
+#include "Sky.h"
 
-PlayerPlane::PlayerPlane()
+PlayerPlane::PlayerPlane(Sky* l_sky):
+	Plane(l_sky)
 {
-}
-
-PlayerPlane::PlayerPlane(sf::RenderWindow* l_window):
-	Plane(l_window)
-{
-	m_Texture.loadFromFile("assets/spacecraft.png");
-	m_Sprite.setTexture(m_Texture);
-	sf::Vector2f originPosition(renderWindow->getSize().x / 2, renderWindow->getSize().y - m_Texture.getSize().y);
-	m_Sprite.setPosition(originPosition);
-	m_Speed.x = 200;
-	m_Speed.y = 200;
+	this->setTexture(texture);
+	this->setScale(0.3, 0.3);
+	this->setPosition(sky->window->getSize().x / 2, sky->window->getSize().y - this->texture.getSize().y);
+	this->setSpeed(100);
+	this->setFireSpeed(15);
+	life = 100;
+	fireDensity = 20;
 }
 
 PlayerPlane::~PlayerPlane()
 {
+
 }
 
-void PlayerPlane::ProcessEvent()
+void PlayerPlane::fire()
 {
-	sf::Event evnt;
-	while (renderWindow->pollEvent(evnt))
-	{
-		if (evnt.type == sf::Event::Closed) {
-			renderWindow->close();
-		}
-		else if (evnt.type == sf::Event::KeyPressed) {
-			HandlePlayerInput(evnt.key.code, true);
-			break;
-		}
-		else if (evnt.type == sf::Event::KeyReleased) {
-			HandlePlayerInput(evnt.key.code, false);
-			break;
-		}
-		
+	static int fireIndex = 0;
+
+	if (fireIndex > fireDensity) {
+
+		fireIndex = 0;
 	}
+	else {
+		fireIndex++;
+	}
+
 }
 
-void PlayerPlane::HandlePlayerInput(sf::Keyboard::Key key, bool isPressed)
+bool PlayerPlane::isDead()
 {
-	switch (key)
-	{
-	case sf::Keyboard::W:
-		if (!mIsMovingDown) {
-			mIsMovingUp = isPressed;
-		}
-		break;
-	case sf::Keyboard::S:
-		if (!mIsMovingUp) {
-			mIsMovingDown = isPressed;
-		}
-		break;
-	case sf::Keyboard::A:
-		if (!mIsMovingRight) {
-			mIsMovingLeft = isPressed;
-		}
-		break;
-	case sf::Keyboard::D:
-		if (!mIsMovingLeft) {
-			mIsMovingRight = isPressed;
-		}
-		break;
-	default:
-		break;
-	}
+	return life > 0;
 }
 
-void PlayerPlane::Move(sf::Time l_elapsed)
+void PlayerPlane::damageAnimation()
 {
-	sf::Vector2f position = m_Sprite.getPosition();
-	sf::Vector2f speed(0, 0);
-	if (mIsMovingUp) {
-		speed.y = -m_Speed.y;
-	}
-	else if (mIsMovingDown) {
-		speed.y = m_Speed.y;
-	}
-	else if (mIsMovingRight) {
-		speed.x = m_Speed.x;
-	}
-	else if (mIsMovingLeft) {
-		speed.x = -m_Speed.x;
-	}
-	m_Sprite.move(speed*l_elapsed.asSeconds());
-}
+	sf::Sprite boomImg;
+	boomImg.setTexture(boomTexture);
+	boomImg.setPosition(this->getPosition().x, this->getPosition().y);
+	sky->window->draw(boomImg);
+	sky->window->display();
 
-void PlayerPlane::Update(sf::Time l_elapsed)
-{
-	ProcessEvent();
-	Move(l_elapsed);
-	if (isCollide()) {
-		Damage(m_life);
-	}
-}
-
-void PlayerPlane::Shoot()
-{
+	sf::Time s = sf::seconds(0.5);
+	sf::sleep(s);
+	life--;
 }

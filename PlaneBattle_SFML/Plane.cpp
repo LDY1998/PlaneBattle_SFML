@@ -1,7 +1,8 @@
 #include "Plane.h"
 
+
 Plane::Plane(Sky * l_sky):
-	sky(l_sky)
+	FlyingObject(l_sky)
 {
 }
 

@@ -6,17 +6,20 @@ class EnemyPlane :
 	public Plane
 {
 public:
-	EnemyPlane();
-	EnemyPlane(sf::RenderWindow* l_window);
+	EnemyPlane(Sky* l_sky);
 	~EnemyPlane();
-	void Shoot();
-	void Move(sf::Time l_elapsed);
-	void Update(sf::Time l_elapsed);
-	void Render();
-	void InitializeTexture();
+
+	void fire();
+	void moveRandomly();
+
+
 
 private:
-	sf::Vector2f m_Velocity;
+	sf::Texture texture = GTexture::ENEMY_NORMAL;
+	sf::Texture boomTexture = GTexture::ENEMY_BOOM1;
+	sf::Vector2f direction;
+
+
 
 };
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "GTexture.h"
 #include "Window.h"
 #include <iostream>
 #include "StateManager.h"
@@ -20,6 +21,7 @@ public:
 	void Update();
 	sf::Time GetElapsed();
 	void RestartClock();
+	void ProcessEvent();
 
 private:
 	sf::RenderWindow m_Window;
