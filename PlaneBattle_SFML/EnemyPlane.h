@@ -11,6 +11,7 @@ public:
 
 	void fire();
 	void moveRandomly();
+	void update(sf::Time elapsed);
 
 
 

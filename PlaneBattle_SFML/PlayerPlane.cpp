@@ -23,7 +23,10 @@ void PlayerPlane::fire()
 	static int fireIndex = 0;
 
 	if (fireIndex > fireDensity) {
-
+		Bullet* bulletLeft = new Bullet(GTexture::BULLET, sf::Vector2f(0.0, -1.0), this->getPosition()+sf::Vector2f(10, 10));
+		this->sky->addBullet(bulletLeft);
+		Bullet* bulletRight = new Bullet(GTexture::BULLET, sf::Vector2f(0.0, -1.0), this->getPosition()+sf::Vector2f(100, 10));
+		this->sky->addBullet(bulletRight);
 		fireIndex = 0;
 	}
 	else {

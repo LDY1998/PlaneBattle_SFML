@@ -20,3 +20,13 @@ int Plane::getFireSpeed()
 	return fireSpeed;
 }
 
+void Plane::damage(int damage)
+{
+	life -= damage;
+}
+
+bool Plane::isDead()
+{
+	return life <= 0;
+}
+

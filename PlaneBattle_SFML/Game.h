@@ -21,7 +21,7 @@ public:
 	void Update();
 	sf::Time GetElapsed();
 	void RestartClock();
-	void ProcessEvent();
+	void ProcessEvent(sf::Time);
 
 private:
 	sf::RenderWindow m_Window;

@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="EnemyPlane.cpp" />
     <ClCompile Include="FlyingObject.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -139,6 +140,7 @@
     <ClCompile Include="StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="EnemyPlane.h" />
     <ClInclude Include="FlyingObject.h" />
     <ClInclude Include="Game.h" />

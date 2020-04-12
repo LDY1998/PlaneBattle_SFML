@@ -11,7 +11,9 @@ public:
 
 	void setFireSpeed(int speed);
 	int getFireSpeed();
+	void damage(int damage);
 	virtual void fire() = 0;
+	bool isDead();
 
 protected:
 	int fireSpeed;
